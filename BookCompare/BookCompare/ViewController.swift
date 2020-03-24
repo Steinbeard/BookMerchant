@@ -34,6 +34,6 @@ class ViewController: UIViewController {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.performSegue(withIdentifier: "searchSegue", sender: searchBar.text)
+        //self.performSegue(withIdentifier: "searchSegue", sender: searchBar.text)
     }
 }
