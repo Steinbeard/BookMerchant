@@ -10,10 +10,13 @@ import AVFoundation
 
 import UIKit
 
+// Barcode capture functionality from Apple's AVCam example:
+//https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/avcam_building_a_camera_app
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var book: Book?
+    var scanHistory = [Book]()
     
     @IBOutlet var searchBar: UISearchBar!
     
@@ -61,7 +64,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.layer.addSublayer(previewLayer)
 
         captureSession.startRunning()
-}
+    }
 
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
@@ -69,7 +72,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         present(ac, animated: true)
         captureSession = nil
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -77,7 +79,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession.startRunning()
         }
     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -86,11 +87,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        //If passing to a detail view, give it book code
-    }
-
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession.stopRunning()
 
@@ -100,31 +96,45 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
         }
-
         dismiss(animated: true)
     }
-
-    func found(code: String) {
-        print(code)
-        BookClient.getBook(isbn: code) {(book, error) in
-            guard let book = book, error == nil else {
-                print(error!)
-                return
-            }
-            self.book = book
-        }
-        //1. Fetch book for code, then
-        //2. If valid book: segue to detail view
-        //      a. Else if invalid, show small error
-        //      b. Else if network error, show other small error
-    }
-
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+
+}
+
+// Fetch book data and present appropriate detail
+extension ScannerViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "detailSegue" {
+            let vc = segue.destination as! DetailViewController
+            vc.book = self.book
+        }
+    }
+    
+    func found(code: String) {
+        print(code)
+        BookClient.getBook(isbn: code) {(book, error) in
+            guard let book = book, error == nil else {
+                if let parsingError = error as? ParsingError {
+                    print(parsingError)
+                    // Book unavailable popup
+                } else {
+                    // Network error popup
+                }
+                print(error!) //-1009 for no wifi connection
+                return
+            }
+            self.book = book
+            self.scanHistory.append(book)
+            self.performSegue(withIdentifier: "detailSegue", sender: nil)
+        }
     }
 
 }

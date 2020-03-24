@@ -9,10 +9,18 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    @IBOutlet var titleView: UILabel!
+    @IBOutlet var authorView: UILabel!
+    @IBOutlet var datePublishedView: UILabel!
+    var book: Book?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let book = self.book {
+            titleView.text = book.title
+            authorView.text = book.authors[0].name
+            datePublishedView.text = book.publishDate
+        }
         // Do any additional setup after loading the view.
     }
     

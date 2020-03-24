@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B528F1624259D8600D8A30D /* BookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F1524259D8600D8A30D /* BookClient.swift */; };
+		2B528F1824295A0400D8A30D /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F1724295A0400D8A30D /* BookModel.swift */; };
 		2B6D1DD32414A4270006DEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD22414A4270006DEA8 /* AppDelegate.swift */; };
 		2B6D1DD52414A4270006DEA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD42414A4270006DEA8 /* SceneDelegate.swift */; };
 		2B6D1DD72414A4270006DEA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD62414A4270006DEA8 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2B528F1524259D8600D8A30D /* BookClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookClient.swift; sourceTree = "<group>"; };
+		2B528F1724295A0400D8A30D /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		2B6D1DCF2414A4270006DEA8 /* BookCompare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookCompare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B6D1DD22414A4270006DEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B6D1DD42414A4270006DEA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				2B6D1DD62414A4270006DEA8 /* ViewController.swift */,
 				2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */,
 				2B528F1524259D8600D8A30D /* BookClient.swift */,
+				2B528F1724295A0400D8A30D /* BookModel.swift */,
 				2B6D1DD82414A4270006DEA8 /* Main.storyboard */,
 				2B6D1DDB2414A4290006DEA8 /* Assets.xcassets */,
 				2B6D1DDD2414A4290006DEA8 /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				2B6D1DE92414B1430006DEA8 /* DetailViewController.swift in Sources */,
 				2B6D1DD52414A4270006DEA8 /* SceneDelegate.swift in Sources */,
 				2B6D1DE72414A51F0006DEA8 /* ScannerViewController.swift in Sources */,
+				2B528F1824295A0400D8A30D /* BookModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
