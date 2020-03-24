@@ -12,16 +12,18 @@ class DetailViewController: UIViewController {
     @IBOutlet var titleView: UILabel!
     @IBOutlet var authorView: UILabel!
     @IBOutlet var datePublishedView: UILabel!
+    @IBOutlet var priceTable: UITableView!
     var book: Book?
+    var priceData: [BookListing]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        priceTable.delegate = self
         if let book = self.book {
             titleView.text = book.title
             authorView.text = book.authors[0].name
             datePublishedView.text = book.publishDate
         }
-        // Do any additional setup after loading the view.
     }
     
 
@@ -35,4 +37,8 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+extension DetailViewController: UITableViewDelegate {
+    
 }

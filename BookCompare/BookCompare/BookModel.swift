@@ -24,7 +24,7 @@ struct Book {
     init?(json: [String: Any]) {
         guard let title = json["title"] as? String,
             let publishDate = json["publish_date"] as? String,
-            let authors = json["authors"] as? [[String: Any]] //An array of dictionaries. Might not work!!
+            let authors = json["authors"] as? [[String: Any]]
         else {
             return nil
         }
@@ -76,24 +76,30 @@ struct Book {
     }
 }
 
-struct Publisher: Codable {
+struct Publisher {
     let name: String?
 }
 
-struct Author: Codable {
+struct Author {
     let name: String?
 }
 
-struct BookIdentifier: Codable {
+struct BookIdentifier {
     let isbn13: [Int]?
     let isbn10: [Int]?
 }
 
-struct Place: Codable {
+struct Place {
     let name: String?
 }
 
-struct Classification: Codable {
+struct Classification {
     let deweyDecimalClass: [String]?
     let lcClassifications: [String]? //Library of Congress system used by UChicago libraries
+}
+
+struct BookListing {
+    let seller: String?
+    let price: Double?
+    let location: String?
 }

@@ -2,7 +2,7 @@
 //  ScannerViewController.swift
 //  BookCompare
 //
-//  Barcode Scanner VC by Paul Hudson, Hacking with Swift
+//  Based on barcode Scanner VC by Paul Hudson, Hacking with Swift
 //  https://www.hackingwithswift.com/example-code/media/how-to-scan-a-barcode
 //
 
@@ -10,8 +10,7 @@ import AVFoundation
 
 import UIKit
 
-// Barcode capture functionality from Apple's AVCam example:
-//https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/avcam_building_a_camera_app
+// Capture session, bar code recognition, and IBOutlets to subviews
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -109,7 +108,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
 }
 
-// Fetch book data and present appropriate detail
+// Fetch book data from OpenLibrary and present appropriate detail
 extension ScannerViewController {
     func found(code: String) {
         print(code)
@@ -118,26 +117,25 @@ extension ScannerViewController {
             self.loadingIndicator.isHidden = true
             guard let book = book, error == nil else {
                 self.captureSession.startRunning()
-                if let parsingError = error as? ParsingError {
-                    print(parsingError)
-                    self.errorMessage.text = "We don't know about this book :("
+                if error is ParsingError {
+                    self.errorMessage.text = " We don't know about this book. 🤔 "
                     self.errorMessage.isHidden = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.errorMessage.isHidden = true
                     }
                 } else {
-                    self.errorMessage.text = "Network error. Check connection?"
+                    self.errorMessage.text = " Network error. Check connection? 🤖 "
                     self.errorMessage.isHidden = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.errorMessage.isHidden = true
                     }                }
-                print(error!) //-1009 for no wifi connection
+                print(error!)
                 return
             }
             self.book = book
             self.scanHistory.append(book)
             guard let parent = self.parent as? ViewController else {
-                print("Scanner unable to access parent view controller to perform segue")
+                print("Error: scanner unable to access parent view controller to perform segue")
                 return
             }
             parent.performSegue(withIdentifier: "detailSegue", sender: self)

@@ -34,6 +34,6 @@ class ViewController: UIViewController {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        //TODO Perform search and segue to table of results
+        self.performSegue(withIdentifier: "searchSegue", sender: searchBar.text)
     }
 }

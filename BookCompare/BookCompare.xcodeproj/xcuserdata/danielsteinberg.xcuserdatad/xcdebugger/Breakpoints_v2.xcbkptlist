@@ -14,8 +14,8 @@
             filePath = "BookCompare/ScannerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "found(code:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "BookCompare/ScannerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "found(code:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "BookCompare/ScannerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "found(code:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -66,6 +66,114 @@
             endingLineNumber = "19"
             landmarkName = "getBook(isbn:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookCompare/ScannerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "ScannerViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - f9a050401e0ad1ab"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.book.getter : Swift.Optional&lt;BookCompare.Book&gt;"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "408">
+               </Location>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - 1c24926f3aa4f1b7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.book.setter : Swift.Optional&lt;BookCompare.Book&gt;"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "504">
+               </Location>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - 9419861cc26f39a8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.book.modify : Swift.Optional&lt;BookCompare.Book&gt;"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - b4c02fdcc3fa17ef"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.book.modify : Swift.Optional&lt;BookCompare.Book&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - 4981543747d1a48a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; BookCompare.ScannerViewController"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "1517DF86-9A22-4E6A-87EC-3BFACB512BAC - 792ff4f772b3e8c2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookCompare.ScannerViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;BookCompare.ScannerViewController&gt;"
+                  moduleName = "BookCompare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielsteinberg/Desktop/iOS%20Development/Final%20Project/BookMerchant/BookCompare/BookCompare/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "244">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
