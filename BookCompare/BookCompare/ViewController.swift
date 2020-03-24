@@ -9,12 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        searchBar.delegate = self
     }
-
-
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "detailSegue" {
+            let vc = segue.destination as! DetailViewController
+            let scanner = sender as! ScannerViewController
+            vc.book = scanner.book
+        }
+    }
 }
 
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        //TODO Perform search and segue to table of results
+    }
+}

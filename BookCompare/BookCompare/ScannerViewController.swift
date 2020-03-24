@@ -17,16 +17,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var previewLayer: AVCaptureVideoPreviewLayer!
     var book: Book?
     var scanHistory = [Book]()
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var errorMessage: UILabel!
     
-    @IBOutlet var searchBar: UISearchBar!
-    
-    @IBAction func ButtonClick(_ sender: Any) {
-        print("In button click")
-        performSegue(withIdentifier: "detailSegue", sender: self)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadingIndicator.isHidden = true
+        errorMessage.isHidden = true
+        
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
 
@@ -64,6 +62,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.layer.addSublayer(previewLayer)
 
         captureSession.startRunning()
+        self.view.bringSubviewToFront(loadingIndicator)
+        self.view.bringSubviewToFront(errorMessage)
+
     }
 
     func failed() {
@@ -110,30 +111,36 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
 // Fetch book data and present appropriate detail
 extension ScannerViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if segue.identifier == "detailSegue" {
-            let vc = segue.destination as! DetailViewController
-            vc.book = self.book
-        }
-    }
-    
     func found(code: String) {
         print(code)
+        loadingIndicator.isHidden = false
         BookClient.getBook(isbn: code) {(book, error) in
+            self.loadingIndicator.isHidden = true
             guard let book = book, error == nil else {
+                self.captureSession.startRunning()
                 if let parsingError = error as? ParsingError {
                     print(parsingError)
-                    // Book unavailable popup
+                    self.errorMessage.text = "We don't know about this book :("
+                    self.errorMessage.isHidden = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.errorMessage.isHidden = true
+                    }
                 } else {
-                    // Network error popup
-                }
+                    self.errorMessage.text = "Network error. Check connection?"
+                    self.errorMessage.isHidden = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.errorMessage.isHidden = true
+                    }                }
                 print(error!) //-1009 for no wifi connection
                 return
             }
             self.book = book
             self.scanHistory.append(book)
-            self.performSegue(withIdentifier: "detailSegue", sender: nil)
+            guard let parent = self.parent as? ViewController else {
+                print("Scanner unable to access parent view controller to perform segue")
+                return
+            }
+            parent.performSegue(withIdentifier: "detailSegue", sender: self)
         }
     }
 

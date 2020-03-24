@@ -32,6 +32,11 @@ class BookClient {
                         print(book)
                         DispatchQueue.main.async {completion(book, nil)}
                     }
+                    else {
+                        let error = ParsingError.unavailable
+                        DispatchQueue.main.async {completion(nil, error)}
+                        return
+                    }
                 }
             } catch let error as NSError {
                 print("Failed to load: \(error.localizedDescription)")

@@ -1,38 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WTb-2B-QD8">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Scanner View Controller-->
+        <!--Book Compare-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ScannerViewController" customModule="BookCompare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BookCompare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" placeholder="Search for books" translatesAutoresizingMaskIntoConstraints="NO" id="6Wj-Rz-H9c">
-                                <rect key="frame" x="0.0" y="153" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-hM-GbY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <connections>
+                                    <segue destination="pc9-cq-PAJ" kind="embed" id="p5u-Xo-ZCs"/>
+                                </connections>
+                            </containerView>
+                            <searchBar autoresizesSubviews="NO" alpha="0.90000000000000002" contentMode="redraw" placeholder="Scan a book, or search here" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5IZ-Vg-5g3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="RGs-wr-LrX"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="KLf-hM-GbY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7fL-SP-eW1"/>
+                            <constraint firstItem="KLf-hM-GbY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8I2-TV-WYi"/>
+                            <constraint firstItem="KLf-hM-GbY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Ma2-56-CvD"/>
+                            <constraint firstItem="5IZ-Vg-5g3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WC2-CU-VlD"/>
+                            <constraint firstItem="5IZ-Vg-5g3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="h4m-vm-xRQ"/>
+                            <constraint firstItem="KLf-hM-GbY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lRc-Fe-DUp"/>
+                            <constraint firstItem="5IZ-Vg-5g3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sSC-a1-1cJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dle-tj-y7Q" appends="YES" id="dE8-iH-Njb"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="ZGv-tc-IKe"/>
+                    <navigationItem key="navigationItem" title="Book Compare" id="ZGv-tc-IKe"/>
                     <connections>
-                        <outlet property="searchBar" destination="6Wj-Rz-H9c" id="m3l-FX-IOK"/>
+                        <outlet property="searchBar" destination="5IZ-Vg-5g3" id="nIr-Wt-ueh"/>
                         <segue destination="fcW-h6-g2u" kind="show" identifier="detailSegue" id="jY5-gd-nmK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dle-tj-y7Q">
+                    <connections>
+                        <action selector="handleTap:" destination="BYZ-38-t0r" id="7jM-Ki-klC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1053.6231884057972" y="126.5625"/>
+            <point key="canvasLocation" x="1122" y="127"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="nOo-0W-iZy">
@@ -110,6 +140,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dC-wF-9r6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="qqI-7Q-tPF">
+            <objects>
+                <viewController id="pc9-cq-PAJ" customClass="ScannerViewController" customModule="BookCompare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pFq-gh-K5f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2hw-v1-VXk">
+                                <rect key="frame" x="197" y="377" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error: unable to access book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Xr-Ys-o86">
+                                <rect key="frame" x="0.0" y="347" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="errorMessage" destination="5Xr-Ys-o86" id="3G1-6h-o8e"/>
+                        <outlet property="loadingIndicator" destination="2hw-v1-VXk" id="KHh-k3-tgq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXz-kB-EQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121.7391304347827" y="803.57142857142856"/>
         </scene>
     </scenes>
 </document>
