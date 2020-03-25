@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     let priceDataSource = PriceDataSource()
+    var scanner: ScannerViewController?
+    var didSearch = false
     @IBOutlet var searchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -30,6 +32,10 @@ class ViewController: UIViewController {
             if let identifier = Int(scanner.book?.identifiers.isbn13?[0] ?? "") ?? Int(scanner.book?.identifiers.isbn10?[0] ?? "") {
                 vc.priceData = self.priceDataSource.getListings(isbn: identifier)//identifier)
             }
+        } else if segue.identifier == "scannerEmbed" {
+            if let scanner = segue.destination as? ScannerViewController {
+                self.scanner = scanner
+            }
         }
     }
 }
@@ -37,6 +43,16 @@ class ViewController: UIViewController {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        //self.performSegue(withIdentifier: "searchSegue", sender: searchBar.text)
+        if let code = searchBar.text {
+            scanner?.found(code: code)
+        }
+        self.didSearch = true
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if self.didSearch {
+            searchBar.text = ""
+            self.didSearch = false
+        }
     }
 }

@@ -112,6 +112,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 extension ScannerViewController {
     func found(code: String) {
         print(code)
+        guard Int(code) != nil && (code.count == 13 || code.count == 10) else {
+            self.errorMessage.text = " Enter an ISBN (10 or 13-digit ID number) 🕵️‍♂️ "
+            self.errorMessage.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.errorMessage.isHidden = true
+            }
+            return
+        }
         loadingIndicator.isHidden = false
         BookClient.getBook(isbn: code) {(book, error) in
             self.loadingIndicator.isHidden = true
@@ -120,15 +128,16 @@ extension ScannerViewController {
                 if error is ParsingError {
                     self.errorMessage.text = " We don't know about this book. 🤔 "
                     self.errorMessage.isHidden = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                         self.errorMessage.isHidden = true
                     }
                 } else {
                     self.errorMessage.text = " Network error. Check connection? 🤖 "
                     self.errorMessage.isHidden = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                         self.errorMessage.isHidden = true
-                    }                }
+                    }
+                }
                 print(error!)
                 return
             }

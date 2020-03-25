@@ -22,8 +22,10 @@ class DetailViewController: UIViewController {
         priceTable.dataSource = self
         if let book = self.book {
             titleView.text = book.title
-            authorView.text = book.authors[0].name
-            datePublishedView.text = book.publishDate
+            authorView.text = "by "  + (book.byStatement ?? book.authors[0].name ?? "unknown author")
+            datePublishedView.text = (book.publishers.count > 0) ?
+                ("\(book.publishers[0].name ?? "Published"): \(book.publishDate ?? "unknown date")") :
+                ("Published: \(book.publishDate ?? "unknown date")")
         }
     }
     
