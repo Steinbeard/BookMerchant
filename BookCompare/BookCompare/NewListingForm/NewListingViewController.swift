@@ -84,5 +84,3 @@ class NewListingViewController: UITableViewController {
     */
 
 }
-
-//extension NewListingViewController: 
