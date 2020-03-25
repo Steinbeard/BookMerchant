@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Table view gives automatic keyboard-adjustment scrolling
 class NewListingViewController: UITableViewController {
     
     var cells = [UITableViewCell]()
@@ -20,12 +21,10 @@ class NewListingViewController: UITableViewController {
     
     @IBAction func handTap(_ sender: UITapGestureRecognizer) {
         if let cell = cells[0] as? NewListingTableViewCell {
-            cell.isbnField.resignFirstResponder()
-            cell.priceField.resignFirstResponder()
-            cell.firstnameField.resignFirstResponder()
-            cell.lastnameField.resignFirstResponder()
-            cell.locationField.resignFirstResponder()
-            cell.emailField.resignFirstResponder()
+            guard let fields = cell.textFieldOrder else { return }
+            for field in fields {
+                field.resignFirstResponder()
+            }
         }
     }
     
