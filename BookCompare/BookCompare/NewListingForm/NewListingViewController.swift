@@ -10,6 +10,8 @@ import UIKit
 
 class NewListingViewController: UITableViewController {
     
+    var cells = [UITableViewCell]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
@@ -17,7 +19,14 @@ class NewListingViewController: UITableViewController {
     }
     
     @IBAction func handTap(_ sender: UITapGestureRecognizer) {
-        
+        if let cell = cells[0] as? NewListingTableViewCell {
+            cell.isbnField.resignFirstResponder()
+            cell.priceField.resignFirstResponder()
+            cell.firstnameField.resignFirstResponder()
+            cell.lastnameField.resignFirstResponder()
+            cell.locationField.resignFirstResponder()
+            cell.emailField.resignFirstResponder()
+        }
     }
     
     // MARK: - Table view data source
@@ -32,6 +41,7 @@ class NewListingViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newListingCell", for: indexPath)
+        self.cells.insert(cell, at: indexPath.row)
         return cell
     }
     
