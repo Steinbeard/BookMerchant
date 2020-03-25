@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         priceTable.delegate = self
+        priceTable.dataSource = self
         if let book = self.book {
             titleView.text = book.title
             authorView.text = book.authors[0].name
@@ -26,19 +27,27 @@ class DetailViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension DetailViewController: UITableViewDelegate {
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.priceData?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = priceTable.dequeueReusableCell(withIdentifier: "priceListingCell", for: indexPath) as! PriceTableViewCell
+        cell.sellerLabel.text = self.priceData?[indexPath.row].seller.name
+        if let price = self.priceData?[indexPath.row].price {
+            cell.priceLabel.text = "$\(price)"
+        }
+        cell.conditionLabel.text = self.priceData?[indexPath.row].condition?.rawValue
+        cell.locationLabel.text = self.priceData?[indexPath.row].seller.location
+        return cell
+    }
+    
     
 }

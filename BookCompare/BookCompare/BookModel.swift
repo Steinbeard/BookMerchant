@@ -48,8 +48,8 @@ struct Book {
         let lcClassifications = classifications?["lc_classifications"] as? [String]
         self.classifications = Classification(deweyDecimalClass: deweyDecimalClass, lcClassifications: lcClassifications)
         
-        let isbn10 = identifiers?["isbn_10"] as? [Int] //try Int later
-        let isbn13 = identifiers?["isbn_13"] as? [Int]
+        let isbn10 = identifiers?["isbn_10"] as? [String] //try Int later
+        let isbn13 = identifiers?["isbn_13"] as? [String]
         self.identifiers = BookIdentifier(isbn13: isbn13, isbn10: isbn10)
         
         var authorNames = [Author]()
@@ -85,8 +85,8 @@ struct Author {
 }
 
 struct BookIdentifier {
-    let isbn13: [Int]?
-    let isbn10: [Int]?
+    let isbn13: [String]?
+    let isbn10: [String]?
 }
 
 struct Place {
@@ -96,10 +96,4 @@ struct Place {
 struct Classification {
     let deweyDecimalClass: [String]?
     let lcClassifications: [String]? //Library of Congress system used by UChicago libraries
-}
-
-struct BookListing {
-    let seller: String?
-    let price: Double?
-    let location: String?
 }
