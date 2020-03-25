@@ -20,11 +20,13 @@ class NewListingTableViewCell: UITableViewCell {
     @IBOutlet var successIndicator: UIImageView!
     var textFieldOrder: [UITextField]?
     @IBOutlet var bookTitle: UILabel!
+    @IBOutlet var priceField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textFieldOrder = [isbnField, firstnameField, lastnameField, locationField, emailField]
+        textFieldOrder = [isbnField, priceField, firstnameField, lastnameField, locationField, emailField]
         isbnField.delegate = self
+        priceField.delegate = self
         firstnameField.delegate = self
         lastnameField.delegate = self
         locationField.delegate = self
@@ -40,6 +42,8 @@ class NewListingTableViewCell: UITableViewCell {
     }
     
     @IBAction func validateISBN(_ sender: Any) {
+        self.successIndicator.isHidden = true
+        self.bookTitle.text = "What book are you selling?"
         let textField = sender as! UITextField
         guard let text = textField.text else { return }
         if (text.count == 10 || text.count == 13) {
