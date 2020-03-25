@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let priceDataSource = PriceDataSource()
+    let priceDataSource = PriceDataSource.sharedInstance
     var scanner: ScannerViewController?
     var didSearch = false
     @IBOutlet var searchBar: UISearchBar!
