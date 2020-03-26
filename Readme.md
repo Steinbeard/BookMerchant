@@ -11,3 +11,5 @@ https://www.hackingwithswift.com/example-code/system/how-to-read-your-apps-versi
 Splashtastic by Andrew Binkowski
 Presentation slides by Susan Stevenså
 http://ios-tutorial.com/working-dates-swift/
+
+Icon from IconPond: https://www.pinterest.com/pin/775041417095294604/
