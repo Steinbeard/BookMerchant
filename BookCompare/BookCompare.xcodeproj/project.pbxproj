@@ -130,9 +130,9 @@
 		2B7A7A35242C9B2200EAE22E /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */,
 				2B6D1DD62414A4270006DEA8 /* ViewController.swift */,
 				2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */,
-				2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";

@@ -18,12 +18,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        let splashScreen = SplashViewController()
-        self.present(splashScreen, animated: true) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.appLaunched()
-            }
-        }
+        
+        
+        // Programmatic view controller creation:
+        // https://guides.codepath.com/ios/Creating-View-Controllers-from-Storyboard
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let splashScreen = storyboard.instantiateViewController(withIdentifier: "splashScreen") as? SplashViewController {
+//            self.present(splashScreen, animated: false) {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//                    self.appLaunched()
+//                }
+//            }
+//        }
         // Present launch screen
         // Update number of times launched
 

@@ -6,3 +6,5 @@ ISBN -> Book model by GETing from http://openlibrary.org/api/books?jscmd=data&bi
 
 Sources:
 https://www.hackingwithswift.com/example-code/system/how-to-read-your-apps-version-from-your-infoplist-file
+Splashtastic by Andrew Binkowski
+Presentation slides by Susan Stevens
