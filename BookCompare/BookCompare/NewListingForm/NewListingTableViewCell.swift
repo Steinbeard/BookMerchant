@@ -44,8 +44,11 @@ class NewListingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func pressSubmit(_ sender: Any) { submitForm() }
+    
     @IBAction func validateISBN(_ sender: Any) {
         self.successIndicator.isHidden = true
+        self.isISBNValid = false
         self.bookTitle.text = "What book are you selling?"
         let textField = sender as! UITextField
         guard let text = textField.text else { return }
@@ -57,7 +60,6 @@ class NewListingTableViewCell: UITableViewCell {
                     self.successIndicator.isHidden = false
                     self.successIndicator.image = UIImage(systemName: "xmark.circle")
                     self.successIndicator.tintColor = .systemRed
-                    self.isISBNValid = true
                     return
                 }
                 self.successIndicator.isHidden = false
@@ -69,12 +71,24 @@ class NewListingTableViewCell: UITableViewCell {
             }
         }
     }
-    
-    @IBAction func pressSubmit(_ sender: Any) {
-        print("now submit pls")
-    }
-    
+
     func submitForm() {
+        guard let isbn = self.isbnField.text else {
+            return
+        }
+        guard isISBNValid else {
+            print("invalid isbn") //TODO give error indication
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            return
+        }
+        guard let priceText = priceField.text else {
+            return
+        }
+        guard let price = Double(priceText) else {
+            print("invalid price") //TODO give error indication
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            return
+        }
         let listing = BookListing(
             seller: Seller(
                 name: firstnameField.text ?? "Unlisted",
@@ -83,16 +97,9 @@ class NewListingTableViewCell: UITableViewCell {
                 phone: nil,
                 location: locationField.text,
                 isIndividual: true),
-            price: Double(priceField.text ?? "9999") ?? 9999, //TODO replace with validation
+            price: price,
             condition: (categorySwitch.selectedSegmentIndex == 0) ? .new : .used
         )
-        guard isISBNValid else {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            return
-        }
-        guard let isbn = self.isbnField.text else {
-            return
-        }
         if let listingData = UserDefaults.standard.object(forKey: "listings") as? Data {
             let decoder = JSONDecoder()
             if var existingListings = try? decoder.decode(ListingStorage.self, from: listingData) {
@@ -106,6 +113,7 @@ class NewListingTableViewCell: UITableViewCell {
                 if let encoded = try? encoder.encode(existingListings) {
                     UserDefaults.standard.set(encoded, forKey: "listings")
                 }
+                self.parentViewController?.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -121,7 +129,7 @@ extension NewListingTableViewCell: UITextFieldDelegate {
         if index + 1 < orderCount {
             textFieldOrder?[index + 1].becomeFirstResponder()
         } else {
-            print("now submit!!!")
+            submitForm()
         }
         return true
     }

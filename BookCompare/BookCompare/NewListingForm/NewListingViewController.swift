@@ -27,7 +27,7 @@ class NewListingViewController: UITableViewController {
             }
         }
     }
-    
+        
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,6 +40,9 @@ class NewListingViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newListingCell", for: indexPath)
+        if let c = cell as? NewListingTableViewCell {
+            c.parentViewController = self
+        }
         self.cells.insert(cell, at: indexPath.row)
         return cell
     }

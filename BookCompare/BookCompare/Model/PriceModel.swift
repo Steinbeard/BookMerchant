@@ -44,7 +44,7 @@ class PriceDataSource {
         // To get real data, replace with calls to an appropriate API—
         // e.g. Rainforest API for Amazon prices, or scraping BookFinder.com
         var listings = [BookListing]()
-        var basePrice = Double.random(in: 4.0...100.0)
+        var basePrice = Double.random(in: 4.0...70.0)
         if let storedData = UserDefaults.standard.object(forKey: "listings") as? Data {
             let decoder = JSONDecoder()
             if let existingListings = try? decoder.decode(ListingStorage.self, from: storedData) {
