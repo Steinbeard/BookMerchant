@@ -10,41 +10,33 @@ import UIKit
 import StoreKit
 
 class ViewController: UIViewController {
+    @IBOutlet var searchBar: UISearchBar!
     let priceDataSource = PriceDataSource.sharedInstance
     var scanner: ScannerViewController?
     var didSearch = false
-    @IBOutlet var searchBar: UISearchBar!
+    var didAskForReview = false
+    var launchCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        
-        
-        // Programmatic view controller creation:
-        // https://guides.codepath.com/ios/Creating-View-Controllers-from-Storyboard
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let splashScreen = storyboard.instantiateViewController(withIdentifier: "splashScreen") as? SplashViewController {
-//            self.present(splashScreen, animated: false) {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                    self.appLaunched()
-//                }
-//            }
-//        }
-        // Present launch screen
-        // Update number of times launched
+            let defaults = UserDefaults.standard
+            if var launchCount = defaults.object(forKey: "launchCount") as? Int {
+                launchCount += 1
+                self.launchCount = launchCount
+                defaults.set(launchCount, forKey: "launchCount")
+            } else {
+                launchCount = 1
+                defaults.set(1, forKey: "launchCount")
+            }
 
     }
     
-    func appLaunched() {
-        let defaults = UserDefaults.standard
-        if var launchCount = defaults.object(forKey: "launchCount") as? Int {
-            launchCount += 1
-            if launchCount == 3 {
-                SKStoreReviewController.requestReview()
-            }
-            defaults.set(launchCount, forKey: "launchCount")
-        } else {
-            defaults.set(1, forKey: "launchCount")
+    override func viewDidAppear(_ animated: Bool) {
+        print(launchCount)
+        if launchCount == 3 && !didAskForReview {
+            didAskForReview = true
+            SKStoreReviewController.requestReview()
         }
     }
     
