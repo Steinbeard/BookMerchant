@@ -27,34 +27,37 @@ class PriceDataSource {
     
     // Store scan history and user listings in UserDefaults
     fileprivate init() {
-        if UserDefaults.standard.object(forKey: "history") == nil {
+        let encoder = JSONEncoder(), defaults = UserDefaults.standard
+        if defaults.object(forKey: "history") == nil {
             // Store isbn (for fetching full data) and title (for table view)
-            UserDefaults.standard.set([(String, String)](), forKey: "history")
+            defaults.set([(String, String)](), forKey: "history")
         }
-        if UserDefaults.standard.object(forKey: "listings") == nil {
-            // Key: isbn, data: user price, book condition
-            UserDefaults.standard.set([String: [BookListing]](), forKey: "listings")
+        if defaults.object(forKey: "listings") == nil {
+            if let encoded = try? encoder.encode( ListingStorage(listings: [String:[BookListing]]())) {
+                defaults.set(encoded, forKey: "listings")
+            }
         }
     }
     
     func getListings(isbn: Int) -> [BookListing]? {
         // Using dummy data
         // To get real data, replace with calls to an appropriate API—
-        // Rainforest API for Amazon prices, or scraping BookFinder.com
+        // e.g. Rainforest API for Amazon prices, or scraping BookFinder.com
         var listings = [BookListing]()
         var basePrice = Double.random(in: 4.0...100.0)
-        // Check if user has posted listings for this book
-        // If this doesn't works, use JSON encoding and decoding to store as NSData
-        if let existingListings = UserDefaults.standard.object(forKey: "listings") as? [String: [BookListing]] {
-            if let existingListing = existingListings["\(isbn)"] {
-                for l in existingListing {
-                    basePrice = (basePrice + l.price)/2
-                    listings.append(l)
+        if let storedData = UserDefaults.standard.object(forKey: "listings") as? Data {
+            let decoder = JSONDecoder()
+            if let existingListings = try? decoder.decode(ListingStorage.self, from: storedData) {
+                if let existingListing = existingListings.listings["\(isbn)"] {
+                    for copy in existingListing {
+                        basePrice = (basePrice + 2*copy.price)/3
+                        listings.append(copy)
+                    }
                 }
             }
         }
         if let existingListings = self.listings[isbn] {
-            return existingListings
+            return listings + existingListings
         }
         let priceRange = basePrice*Double.random(in: 0.1...0.2)
         for i in 0..<Int.random(in: 4...10) {
@@ -75,6 +78,10 @@ class PriceDataSource {
         self.listings[isbn] = listings
         return listings
     }
+}
+
+struct ListingStorage: Codable {
+    var listings: [String: [BookListing]]
 }
 
 struct BookListing: Codable {

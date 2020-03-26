@@ -187,6 +187,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" title="Submit"/>
+                                            <connections>
+                                                <action selector="pressSubmit:" destination="gEq-xr-mLm" eventType="touchUpInside" id="mzi-W4-bta"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

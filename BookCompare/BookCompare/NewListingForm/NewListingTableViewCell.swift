@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class NewListingTableViewCell: UITableViewCell {
 
@@ -18,9 +19,11 @@ class NewListingTableViewCell: UITableViewCell {
     @IBOutlet var emailField: UITextField!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var successIndicator: UIImageView!
-    var textFieldOrder: [UITextField]?
     @IBOutlet var bookTitle: UILabel!
     @IBOutlet var priceField: UITextField!
+    var parentViewController: UITableViewController?
+    var textFieldOrder: [UITextField]?
+    var isISBNValid = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,17 +57,58 @@ class NewListingTableViewCell: UITableViewCell {
                     self.successIndicator.isHidden = false
                     self.successIndicator.image = UIImage(systemName: "xmark.circle")
                     self.successIndicator.tintColor = .systemRed
+                    self.isISBNValid = true
                     return
                 }
                 self.successIndicator.isHidden = false
                 self.successIndicator.image = UIImage(systemName: "checkmark.circle")
                 self.successIndicator.tintColor = .systemGreen
                 self.bookTitle.text = book.title
+                self.isISBNValid = true
                 return
             }
         }
     }
     
+    @IBAction func pressSubmit(_ sender: Any) {
+        print("now submit pls")
+    }
+    
+    func submitForm() {
+        let listing = BookListing(
+            seller: Seller(
+                name: firstnameField.text ?? "Unlisted",
+                website: nil,
+                email: emailField.text,
+                phone: nil,
+                location: locationField.text,
+                isIndividual: true),
+            price: Double(priceField.text ?? "9999") ?? 9999, //TODO replace with validation
+            condition: (categorySwitch.selectedSegmentIndex == 0) ? .new : .used
+        )
+        guard isISBNValid else {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            return
+        }
+        guard let isbn = self.isbnField.text else {
+            return
+        }
+        if let listingData = UserDefaults.standard.object(forKey: "listings") as? Data {
+            let decoder = JSONDecoder()
+            if var existingListings = try? decoder.decode(ListingStorage.self, from: listingData) {
+                if var existingListing = existingListings.listings[isbn] {
+                    existingListing.append(listing)
+                    existingListings.listings[isbn] = existingListing
+                } else {
+                    existingListings.listings[isbn] = [listing]
+                }
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(existingListings) {
+                    UserDefaults.standard.set(encoded, forKey: "listings")
+                }
+            }
+        }
+    }
 }
 
 extension NewListingTableViewCell: UITextFieldDelegate {
@@ -81,44 +125,4 @@ extension NewListingTableViewCell: UITextFieldDelegate {
         }
         return true
     }
-    
-
-    
-//    @objc func textFieldDidChange (){
-//        if textField == isbnField, let text = textField.text {
-//            if (text.count == 10 || text.count == 13) {
-//                activityIndicator.isHidden = false
-//                BookClient.getBook(isbn: text) {(book, error) in
-//                    self.activityIndicator.isHidden = true
-//                    guard let book = book, error == nil else {
-//                        self.successIndicator.isHidden = false
-//                        self.successIndicator.image = UIImage(systemName: "xmark.circle")
-//                        self.successIndicator.tintColor = .systemRed
-//                        return
-//                    }
-//                    self.successIndicator.isHidden = false
-//                    self.successIndicator.image = UIImage(systemName: "checkmark.circle")
-//                    self.successIndicator.tintColor = .systemGreen
-//                    self.bookTitle.text = book.title
-//                    return
-//                }
-//            }
-//        }
-//        return true
-//    }
-    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//        if let code = searchBar.text {
-//            scanner?.found(code: code)
-//        }
-//        self.didSearch = true
-//    }
-//
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        if self.didSearch {
-//            searchBar.text = ""
-//            self.didSearch = false
-//        }
-//    }
 }
