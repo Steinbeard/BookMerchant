@@ -22,6 +22,7 @@
 		2B6D1DDF2414A4290006DEA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6D1DDD2414A4290006DEA8 /* LaunchScreen.storyboard */; };
 		2B6D1DE72414A51F0006DEA8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */; };
 		2B6D1DE92414B1430006DEA8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DE82414B1430006DEA8 /* DetailViewController.swift */; };
+		2B7A7A37242C9B5000EAE22E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		2B6D1DE02414A4290006DEA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		2B6D1DE82414B1430006DEA8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +114,7 @@
 			children = (
 				2B6D1DD22414A4270006DEA8 /* AppDelegate.swift */,
 				2B6D1DD42414A4270006DEA8 /* SceneDelegate.swift */,
-				2B6D1DD62414A4270006DEA8 /* ViewController.swift */,
-				2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */,
+				2B7A7A35242C9B2200EAE22E /* MainView */,
 				2B528F26242BF63400D8A30D /* BookDetail */,
 				2B528F27242BF65E00D8A30D /* NewListingForm */,
 				2B528F2C242C72BB00D8A30D /* HistoryTable */,
@@ -124,6 +125,16 @@
 				2B6D1DE02414A4290006DEA8 /* Info.plist */,
 			);
 			path = BookCompare;
+			sourceTree = "<group>";
+		};
+		2B7A7A35242C9B2200EAE22E /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				2B6D1DD62414A4270006DEA8 /* ViewController.swift */,
+				2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */,
+				2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 				2B528F22242AD89C00D8A30D /* PriceTableViewCell.swift in Sources */,
 				2B6D1DD32414A4270006DEA8 /* AppDelegate.swift in Sources */,
 				2B528F24242BF5E900D8A30D /* NewListingViewController.swift in Sources */,
+				2B7A7A37242C9B5000EAE22E /* SplashViewController.swift in Sources */,
 				2B6D1DE92414B1430006DEA8 /* DetailViewController.swift in Sources */,
 				2B6D1DD52414A4270006DEA8 /* SceneDelegate.swift in Sources */,
 				2B528F2E242C72F400D8A30D /* HistoryTableViewController.swift in Sources */,

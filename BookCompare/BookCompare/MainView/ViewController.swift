@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class ViewController: UIViewController {
     let priceDataSource = PriceDataSource.sharedInstance
@@ -17,10 +18,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        let splashScreen = SplashViewController()
+        self.present(splashScreen, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.appLaunched()
+            }
+        }
+        // Present launch screen
+        // Update number of times launched
+
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+    func appLaunched() {
+        let defaults = UserDefaults.standard
+        if var launchCount = defaults.object(forKey: "launchCount") as? Int {
+            launchCount += 1
+            if launchCount == 3 {
+                SKStoreReviewController.requestReview()
+            }
+            defaults.set(launchCount, forKey: "launchCount")
+        } else {
+            defaults.set(1, forKey: "launchCount")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +93,10 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
     }
 }
 
