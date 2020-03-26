@@ -38,9 +38,40 @@ class ViewController: UIViewController {
                      vc.priceData += isbn10Listings
                  }
             }
+            // Add book to user history, if not already in it
+            if let data = UserDefaults.standard.object(forKey: "history") as? Data {
+                guard let book = scanner.book else { return }
+                let decoder = JSONDecoder(), encoder = JSONEncoder()
+                let newHistoryEntry = HistoryEntry(
+                    isbn: (book.identifiers.isbn10?[0] ?? book.identifiers.isbn13?[0] ?? ""),
+                    title: book.title ?? "",
+                    author: book.authors[0].name ?? ""
+                )
+                if var historyStorage = try? decoder.decode(HistoryStorage.self, from: data) {
+                    guard let identifiers = scanner.book?.identifiers else { return }
+                    // If book is already in history, we want to filter it out to bump it to the top
+                    historyStorage.history = historyStorage.history.filter() { element in
+                        element.isbn != (identifiers.isbn10?[0] ?? "") && element.isbn != (identifiers.isbn13?[0] ?? "")
+                    }
+                    historyStorage.history.insert(newHistoryEntry, at: 0)
+                    if let encoded = try? encoder.encode(historyStorage) {
+                        UserDefaults.standard.set(encoded, forKey: "history")
+                    }
+                }
+            }
+        // Get reference to cotained scanner
         } else if segue.identifier == "scannerEmbed" {
             if let scanner = segue.destination as? ScannerViewController {
                 self.scanner = scanner
+            }
+        } else if segue.identifier == "historySegue" {
+            guard let historyTable = segue.destination as? HistoryTableViewController else { return }
+            historyTable.mainViewController = self
+            if let data = UserDefaults.standard.object(forKey: "history") as? Data {
+                let decoder = JSONDecoder()
+                if let historyStorage = try? decoder.decode(HistoryStorage.self, from: data) {
+                    historyTable.historyStorage = historyStorage
+                }
             }
         }
     }

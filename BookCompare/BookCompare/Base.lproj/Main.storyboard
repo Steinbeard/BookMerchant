@@ -50,7 +50,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Book Compare" id="ZGv-tc-IKe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="pa6-OE-sZA"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="pa6-OE-sZA">
+                            <connections>
+                                <segue destination="D7D-6o-rTM" kind="presentation" identifier="historySegue" id="Rxb-GB-1QK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4dj-G3-xV6">
                             <connections>
                                 <segue destination="yGM-d0-Z5g" kind="show" id="ryP-d4-Rpl"/>
@@ -280,7 +284,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2524.6376811594205" y="-333.48214285714283"/>
+            <point key="canvasLocation" x="2423" y="-368"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="nOo-0W-iZy">
@@ -434,7 +438,35 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dC-wF-9r6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="127"/>
+            <point key="canvasLocation" x="-665" y="127"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="CrA-6v-4rv">
+            <objects>
+                <tableViewController title="History" id="D7D-6o-rTM" customClass="HistoryTableViewController" customModule="BookCompare" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iKB-ar-ycP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="100" id="bqa-MP-pe8">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bqa-MP-pe8" id="4dx-IU-9gB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D7D-6o-rTM" id="s6r-1x-TwS"/>
+                            <outlet property="delegate" destination="D7D-6o-rTM" id="Fj1-ZL-cPb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Dj-Fr-RA3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="298.55072463768118" y="-368.30357142857139"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="qqI-7Q-tPF">

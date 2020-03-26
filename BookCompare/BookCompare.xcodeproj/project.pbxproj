@@ -13,6 +13,7 @@
 		2B528F22242AD89C00D8A30D /* PriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F21242AD89C00D8A30D /* PriceTableViewCell.swift */; };
 		2B528F24242BF5E900D8A30D /* NewListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F23242BF5E900D8A30D /* NewListingViewController.swift */; };
 		2B528F2B242BFA0400D8A30D /* NewListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F2A242BFA0400D8A30D /* NewListingTableViewCell.swift */; };
+		2B528F2E242C72F400D8A30D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B528F2D242C72F400D8A30D /* HistoryTableViewController.swift */; };
 		2B6D1DD32414A4270006DEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD22414A4270006DEA8 /* AppDelegate.swift */; };
 		2B6D1DD52414A4270006DEA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD42414A4270006DEA8 /* SceneDelegate.swift */; };
 		2B6D1DD72414A4270006DEA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DD62414A4270006DEA8 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 		2B528F21242AD89C00D8A30D /* PriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableViewCell.swift; sourceTree = "<group>"; };
 		2B528F23242BF5E900D8A30D /* NewListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListingViewController.swift; sourceTree = "<group>"; };
 		2B528F2A242BFA0400D8A30D /* NewListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListingTableViewCell.swift; sourceTree = "<group>"; };
+		2B528F2D242C72F400D8A30D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		2B6D1DCF2414A4270006DEA8 /* BookCompare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookCompare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B6D1DD22414A4270006DEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B6D1DD42414A4270006DEA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 			path = NewListingForm;
 			sourceTree = "<group>";
 		};
+		2B528F2C242C72BB00D8A30D /* HistoryTable */ = {
+			isa = PBXGroup;
+			children = (
+				2B528F2D242C72F400D8A30D /* HistoryTableViewController.swift */,
+			);
+			path = HistoryTable;
+			sourceTree = "<group>";
+		};
 		2B6D1DC62414A4270006DEA8 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 				2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */,
 				2B528F26242BF63400D8A30D /* BookDetail */,
 				2B528F27242BF65E00D8A30D /* NewListingForm */,
+				2B528F2C242C72BB00D8A30D /* HistoryTable */,
 				2B528F25242BF60000D8A30D /* Model */,
 				2B6D1DD82414A4270006DEA8 /* Main.storyboard */,
 				2B6D1DDB2414A4290006DEA8 /* Assets.xcassets */,
@@ -194,6 +205,7 @@
 				2B528F24242BF5E900D8A30D /* NewListingViewController.swift in Sources */,
 				2B6D1DE92414B1430006DEA8 /* DetailViewController.swift in Sources */,
 				2B6D1DD52414A4270006DEA8 /* SceneDelegate.swift in Sources */,
+				2B528F2E242C72F400D8A30D /* HistoryTableViewController.swift in Sources */,
 				2B6D1DE72414A51F0006DEA8 /* ScannerViewController.swift in Sources */,
 				2B528F2B242BFA0400D8A30D /* NewListingTableViewCell.swift in Sources */,
 				2B528F1824295A0400D8A30D /* BookModel.swift in Sources */,

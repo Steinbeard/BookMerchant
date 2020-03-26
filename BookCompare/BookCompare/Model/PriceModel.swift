@@ -2,6 +2,8 @@
 //  PriceModel.swift
 //  BookCompare
 //
+//  Largely demo methods to generate sample data, and store user-created data locally
+//
 //  Created by Daniel Steinberg on 3/24/20.
 //  Copyright © 2020 Daniel Steinberg. All rights reserved.
 //
@@ -25,15 +27,17 @@ class PriceDataSource {
     Seller(name: "Debbie Harry", website: nil, email: "debontheweb@gmail.com", phone: "(935) 293-3472", location: "New York", isIndividual: true),
     ]
     
-    // Store scan history and user listings in UserDefaults
+    // Store scan history and user-created listings in UserDefaults
     fileprivate init() {
         let encoder = JSONEncoder(), defaults = UserDefaults.standard
         if defaults.object(forKey: "history") == nil {
-            // Store isbn (for fetching full data) and title (for table view)
-            defaults.set([(String, String)](), forKey: "history")
+            if let encoded = try? encoder.encode(HistoryStorage(history: [HistoryEntry]())) {
+                defaults.set(encoded, forKey: "history")
+            }
         }
         if defaults.object(forKey: "listings") == nil {
-            if let encoded = try? encoder.encode( ListingStorage(listings: [String:[BookListing]]())) {
+            //TODO for serious production, store this info to a backend server instead
+            if let encoded = try? encoder.encode(ListingStorage(listings: [String:[BookListing]]())) {
                 defaults.set(encoded, forKey: "listings")
             }
         }
@@ -78,6 +82,16 @@ class PriceDataSource {
         self.listings[isbn] = listings
         return listings
     }
+}
+
+struct HistoryStorage: Codable {
+    var history: [HistoryEntry]
+}
+
+struct HistoryEntry: Codable {
+    let isbn: String
+    let title: String
+    let author: String
 }
 
 struct ListingStorage: Codable {
