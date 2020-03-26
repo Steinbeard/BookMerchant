@@ -28,12 +28,18 @@ class ViewController: UIViewController {
             } else {
                 launchCount = 1
                 defaults.set(1, forKey: "launchCount")
+                //Save date of first launch
+                // http://ios-tutorial.com/working-dates-swift/
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .short
+                let currentDate = Date()
+                let dateString = dateFormatter.string(from: currentDate)
+                defaults.set(dateString, forKey: "firstLaunch")
             }
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(launchCount)
         if launchCount == 3 && !didAskForReview {
             didAskForReview = true
             SKStoreReviewController.requestReview()

@@ -23,6 +23,7 @@
 		2B6D1DE72414A51F0006DEA8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */; };
 		2B6D1DE92414B1430006DEA8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D1DE82414B1430006DEA8 /* DetailViewController.swift */; };
 		2B7A7A37242C9B5000EAE22E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */; };
+		2BCF7EFF242CB34B006E5BEA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BCF7EFE242CB34B006E5BEA /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2B6D1DE62414A51F0006DEA8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		2B6D1DE82414B1430006DEA8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2B7A7A36242C9B5000EAE22E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2BCF7EFE242CB34B006E5BEA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				2B528F2C242C72BB00D8A30D /* HistoryTable */,
 				2B528F25242BF60000D8A30D /* Model */,
 				2B6D1DD82414A4270006DEA8 /* Main.storyboard */,
+				2BCF7EFE242CB34B006E5BEA /* Settings.bundle */,
 				2B6D1DDB2414A4290006DEA8 /* Assets.xcassets */,
 				2B6D1DDD2414A4290006DEA8 /* LaunchScreen.storyboard */,
 				2B6D1DE02414A4290006DEA8 /* Info.plist */,
@@ -195,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCF7EFF242CB34B006E5BEA /* Settings.bundle in Resources */,
 				2B6D1DDF2414A4290006DEA8 /* LaunchScreen.storyboard in Resources */,
 				2B6D1DDC2414A4290006DEA8 /* Assets.xcassets in Resources */,
 				2B6D1DDA2414A4270006DEA8 /* Main.storyboard in Resources */,

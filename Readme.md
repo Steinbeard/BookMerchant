@@ -4,3 +4,4 @@ Sources:
 https://www.hackingwithswift.com/example-code/system/how-to-read-your-apps-version-from-your-infoplist-file
 Splashtastic by Andrew Binkowski
 Presentation slides by Susan Stevenså
+http://ios-tutorial.com/working-dates-swift/
