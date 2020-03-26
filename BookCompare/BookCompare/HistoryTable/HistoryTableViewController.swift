@@ -25,14 +25,16 @@ class HistoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyStorage?.history.count ?? 1
+        guard let historyItemCount = historyStorage?.history.count else { return 1}
+        return max(historyItemCount, 1)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
         guard let historyItemCount = historyStorage?.history.count else { return cell }
         guard historyItemCount > 0 else {
-            cell.textLabel?.text = "Once you've scanned some books, your browsing history will appear here"
+            cell.textLabel?.text = "Scan history will appear here"
+            cell.isUserInteractionEnabled = false
             return cell
         }
         let title = historyStorage?.history[indexPath.row].title ?? ""
