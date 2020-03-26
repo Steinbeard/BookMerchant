@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var datePublishedView: UILabel!
     @IBOutlet var priceTable: UITableView!
     var book: Book?
-    var priceData: [BookListing]?
+    var priceData = [BookListing]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,19 +37,32 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.priceData?.count ?? 0
+        self.priceData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = priceTable.dequeueReusableCell(withIdentifier: "priceListingCell", for: indexPath) as! PriceTableViewCell
-        cell.sellerLabel.text = self.priceData?[indexPath.row].seller.name
-        if let price = self.priceData?[indexPath.row].price {
-            cell.priceLabel.text = "$\(price)"
-        }
-        cell.conditionLabel.text = self.priceData?[indexPath.row].condition?.rawValue
-        cell.locationLabel.text = self.priceData?[indexPath.row].seller.location
+        cell.sellerLabel.text = self.priceData[indexPath.row].seller.name
+        cell.priceLabel.text = "$\(self.priceData[indexPath.row].price)"
+        cell.conditionLabel.text = self.priceData[indexPath.row].condition?.rawValue
+        cell.locationLabel.text = self.priceData[indexPath.row].seller.location
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let email = self.priceData[indexPath.row].seller.email, let title = book?.title else {
+            return
+        }
+        // Tapping listing opens email for seller
+        // Stackoverflow answer from @soprof for reference
+        // https://stackoverflow.com/questions/23299169/ios-button-mail-to-with-subject
+        let emailStr = "\(email)?subject=I'm interested in buying your copy of \(title)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let url = URL(string: ("mailto:\(emailStr ?? "")")) {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
+    }
 }

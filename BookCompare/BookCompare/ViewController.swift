@@ -29,8 +29,14 @@ class ViewController: UIViewController {
             let vc = segue.destination as! DetailViewController
             let scanner = sender as! ScannerViewController
             vc.book = scanner.book
-            if let identifier = Int(scanner.book?.identifiers.isbn13?[0] ?? "") ?? Int(scanner.book?.identifiers.isbn10?[0] ?? "") {
-                vc.priceData = self.priceDataSource.getListings(isbn: identifier)//identifier)
+            if let identifier = Int(scanner.book?.identifiers.isbn13?[0] ?? "") {
+                if let isbn13Listings = self.priceDataSource.getListings(isbn: identifier) {
+                    vc.priceData += isbn13Listings
+                }
+            } else if let identifier = Int(scanner.book?.identifiers.isbn10?[0] ?? "") {
+                if let isbn10Listings = self.priceDataSource.getListings(isbn: identifier) {
+                     vc.priceData += isbn10Listings
+                 }
             }
         } else if segue.identifier == "scannerEmbed" {
             if let scanner = segue.destination as? ScannerViewController {

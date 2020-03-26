@@ -21,6 +21,7 @@ class NewListingTableViewCell: UITableViewCell {
     @IBOutlet var successIndicator: UIImageView!
     @IBOutlet var bookTitle: UILabel!
     @IBOutlet var priceField: UITextField!
+    @IBOutlet var feedbackText: UILabel!
     var parentViewController: UITableViewController?
     var textFieldOrder: [UITextField]?
     var isISBNValid = false
@@ -46,7 +47,12 @@ class NewListingTableViewCell: UITableViewCell {
     
     @IBAction func pressSubmit(_ sender: Any) { submitForm() }
     
+    @IBAction func editedPrice(_ sender: Any) {
+        self.feedbackText.isHidden = true
+    }
+    
     @IBAction func validateISBN(_ sender: Any) {
+        self.feedbackText.isHidden = true
         self.successIndicator.isHidden = true
         self.isISBNValid = false
         self.bookTitle.text = "What book are you selling?"
@@ -79,6 +85,8 @@ class NewListingTableViewCell: UITableViewCell {
         guard isISBNValid else {
             print("invalid isbn") //TODO give error indication
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            self.feedbackText.text = "Invalid ISBN"
+            self.feedbackText.isHidden = false
             return
         }
         guard let priceText = priceField.text else {
@@ -87,11 +95,13 @@ class NewListingTableViewCell: UITableViewCell {
         guard let price = Double(priceText) else {
             print("invalid price") //TODO give error indication
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            self.feedbackText.text = "Invalid price"
+            self.feedbackText.isHidden = false
             return
         }
         let listing = BookListing(
             seller: Seller(
-                name: firstnameField.text ?? "Unlisted",
+                name: (firstnameField.text ?? "Unlisted") + " " + (lastnameField.text ?? ""),
                 website: nil,
                 email: emailField.text,
                 phone: nil,

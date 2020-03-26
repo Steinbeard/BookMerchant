@@ -169,6 +169,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                            <connections>
+                                                <action selector="editedPrice:" destination="gEq-xr-mLm" eventType="editingChanged" id="a01-nZ-rLw"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEk-dE-rNW">
                                             <rect key="frame" x="20" y="162" width="44" height="21"/>
@@ -191,6 +194,12 @@
                                                 <action selector="pressSubmit:" destination="gEq-xr-mLm" eventType="touchUpInside" id="mzi-W4-bta"/>
                                             </connections>
                                         </button>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a valid ISBN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAE-l8-syf">
+                                            <rect key="frame" x="200" y="162" width="194" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="du0-Cb-aGR" firstAttribute="centerY" secondItem="mEk-dE-rNW" secondAttribute="centerY" id="0Nv-ZB-4Ug"/>
@@ -203,9 +212,11 @@
                                         <constraint firstItem="Vhd-WG-yjH" firstAttribute="top" secondItem="Jrt-q2-NnH" secondAttribute="bottom" constant="8" id="8q2-Bd-h9d"/>
                                         <constraint firstItem="m77-8O-WfC" firstAttribute="leading" secondItem="5VO-v6-UEM" secondAttribute="leadingMargin" id="9rS-3J-4xk"/>
                                         <constraint firstItem="q4X-TR-rtd" firstAttribute="top" secondItem="5VO-v6-UEM" secondAttribute="topMargin" id="Aaw-SZ-Pdu"/>
+                                        <constraint firstItem="eAE-l8-syf" firstAttribute="leading" secondItem="du0-Cb-aGR" secondAttribute="trailing" constant="8" id="DFc-mE-JlM"/>
                                         <constraint firstAttribute="trailing" secondItem="du0-Cb-aGR" secondAttribute="trailing" constant="222" id="Eck-Jh-6ML"/>
                                         <constraint firstItem="q4X-TR-rtd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5VO-v6-UEM" secondAttribute="leadingMargin" id="FUA-Uh-UnP"/>
                                         <constraint firstItem="Jrt-q2-NnH" firstAttribute="top" secondItem="RkL-Db-S8d" secondAttribute="bottom" constant="8" id="G0A-Pn-R6Z"/>
+                                        <constraint firstItem="RkL-Db-S8d" firstAttribute="top" secondItem="eAE-l8-syf" secondAttribute="bottom" constant="14" id="GwX-H3-2Fv"/>
                                         <constraint firstItem="hV5-t7-Vk2" firstAttribute="leading" secondItem="5VO-v6-UEM" secondAttribute="leadingMargin" id="IOe-PF-Jz3"/>
                                         <constraint firstItem="du0-Cb-aGR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mEk-dE-rNW" secondAttribute="trailing" constant="8" symbolic="YES" id="KtD-HM-9WU"/>
                                         <constraint firstItem="Vhd-WG-yjH" firstAttribute="leading" secondItem="5VO-v6-UEM" secondAttribute="leadingMargin" id="LMb-d7-kiQ"/>
@@ -223,8 +234,10 @@
                                         <constraint firstItem="RkL-Db-S8d" firstAttribute="top" secondItem="mEk-dE-rNW" secondAttribute="bottom" constant="14" id="cfa-DL-uHp"/>
                                         <constraint firstItem="D75-We-k6I" firstAttribute="trailing" secondItem="5VO-v6-UEM" secondAttribute="trailingMargin" id="dEM-kw-Rwv"/>
                                         <constraint firstItem="Vhd-WG-yjH" firstAttribute="trailing" secondItem="5VO-v6-UEM" secondAttribute="trailingMargin" id="eau-Fc-m6y"/>
+                                        <constraint firstItem="eAE-l8-syf" firstAttribute="top" secondItem="m77-8O-WfC" secondAttribute="bottom" constant="15" id="efw-Cd-dNb"/>
                                         <constraint firstItem="RkL-Db-S8d" firstAttribute="top" secondItem="du0-Cb-aGR" secondAttribute="bottom" constant="8" symbolic="YES" id="epn-Nj-Xj3"/>
                                         <constraint firstItem="Vhd-WG-yjH" firstAttribute="top" secondItem="D75-We-k6I" secondAttribute="bottom" constant="8" id="hjM-Hh-Bu8"/>
+                                        <constraint firstItem="eAE-l8-syf" firstAttribute="trailing" secondItem="5VO-v6-UEM" secondAttribute="trailingMargin" id="jBf-bL-uB8"/>
                                         <constraint firstItem="MEU-O8-GYu" firstAttribute="top" secondItem="hV5-t7-Vk2" secondAttribute="bottom" constant="8" id="lgU-BC-1iz"/>
                                         <constraint firstItem="mEk-dE-rNW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5VO-v6-UEM" secondAttribute="leadingMargin" id="nkU-D4-sZj"/>
                                         <constraint firstItem="RkL-Db-S8d" firstAttribute="trailing" secondItem="5VO-v6-UEM" secondAttribute="trailingMargin" id="orf-jg-Jv7"/>
@@ -242,6 +255,7 @@
                                     <outlet property="bookTitle" destination="cKt-Og-Trh" id="azj-06-ezk"/>
                                     <outlet property="categorySwitch" destination="Jk3-1X-pDt" id="VGj-9p-ua6"/>
                                     <outlet property="emailField" destination="hV5-t7-Vk2" id="8lg-dE-TRk"/>
+                                    <outlet property="feedbackText" destination="eAE-l8-syf" id="i9w-YL-deS"/>
                                     <outlet property="firstnameField" destination="Jrt-q2-NnH" id="uOV-4q-OfP"/>
                                     <outlet property="isbnField" destination="m77-8O-WfC" id="XpH-sa-XDA"/>
                                     <outlet property="lastnameField" destination="D75-We-k6I" id="Kgi-Rd-PVw"/>
